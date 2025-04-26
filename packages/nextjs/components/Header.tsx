@@ -96,7 +96,6 @@ export const Header = () => {
   const burgerMenuRef = useRef<HTMLDivElement>(null);
 
   useOutsideClick(
-    //@ts-expect-error refs are supposed to be null by default
     burgerMenuRef,
     useCallback(() => setIsDrawerOpen(false), []),
   );
@@ -123,7 +122,7 @@ export const Header = () => {
           else setIsDeployed(false);
         })
         .catch((e) => {
-          console.error("contreact cehc", e);
+          console.error("contract check", e);
           if (e.toString().includes("Contract not found")) {
             setIsDeployed(false);
           }
