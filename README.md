@@ -83,6 +83,14 @@ For complete instructions on using Docker with the project, check out the [Requi
 Then download the challenge to your computer and install dependencies by running:
 
 ```sh
+npx create-stark@latest -e challenge-0-simple-nft challenge-0-simple-nft
+cd challenge-0-simple-nft
+yarn install
+```
+
+or clone from SpeedrunStark repo:
+
+```sh
 git clone https://github.com/Scaffold-Stark/speedrunstark.git challenge-0-simple-nft
 cd challenge-0-simple-nft
 git checkout challenge-0-simple-nft
