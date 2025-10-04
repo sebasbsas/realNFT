@@ -1,24 +1,25 @@
 <b>FIRST STEPS:</b><br>
 yarn install<br>
 asdf list <br>
+<br>
 <b>To check versions, should have:</b><br> 
 cairo-coverage<br>
  *0.5.0<br>
 cairo-profiler<br>
  *0.9.0<br>
 scarb<br>
-  2.11.4<br>
- *2.12.0<br>
+ *2.11.4<br>
+  2.12.0<br>
   2.12.2<br>
 starknet-devnet<br>
-  0.4.0v
+ *0.4.0<br>
   0.4.3<br>
   0.5.0-rc.4<br>
- *0.5.1<br>
+  0.5.1<br>
   0.6.0<br>
 starknet-foundry<br>
-  0.48.1<br>
- *0.49.0<br>
+ *0.48.1<br>
+  0.49.0<br>
 <br>
 <b>En packages/snfoundry/.env agregar al final del archivo: (son cuentas predefinidas para devnet) </b><br>
 PRIVATE_KEY_DEVNET=0x71d7bb07b9a64f6f78ac4c816aff4da9<br>
