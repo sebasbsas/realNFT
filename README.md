@@ -1,26 +1,26 @@
-FIRST STEPS:
-yarn install
-asdf list 
-To check versions: should have 
-cairo-coverage
- *0.5.0
-cairo-profiler
- *0.9.0
-scarb
-  2.11.4
- *2.12.0
-  2.12.2
-starknet-devnet
-  0.4.0
-  0.4.3
-  0.5.0-rc.4
- *0.5.1
-  0.6.0
-starknet-foundry
-  0.48.1
- *0.49.0
-
-
+FIRST STEPS:<br>
+yarn install<br>
+asdf list <br>
+To check versions: should have<br> 
+cairo-coverage<br>
+ *0.5.0<br>
+cairo-profiler<br>
+ *0.9.0<br>
+scarb<br>
+  2.11.4<br>
+ *2.12.0<br>
+  2.12.2<br>
+starknet-devnet<br>
+  0.4.0v
+  0.4.3<br>
+  0.5.0-rc.4<br>
+ *0.5.1<br>
+  0.6.0<br>
+starknet-foundry<br>
+  0.48.1<br>
+ *0.49.0<br>
+<br>
+<br>
 # 🏗 Scaffold-Stark
 
 <h4 align="center">
