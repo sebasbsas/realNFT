@@ -14,7 +14,7 @@ pub mod YourCollectible {
     use openzeppelin_token::erc721::extensions::ERC721EnumerableComponent;
     use openzeppelin_token::erc721::extensions::ERC721EnumerableComponent::InternalTrait as EnumerableInternalTrait;
     use openzeppelin_token::erc721::interface::IERC721Metadata;
-    use starknet::storage::{Map, StorageMapReadAccess, StorageMapWriteAccess};
+    use starknet::storage::*;
     use super::{ContractAddress, IYourCollectible};
 
     component!(path: ERC721Component, storage: erc721, event: ERC721Event);
@@ -77,9 +77,11 @@ pub mod YourCollectible {
         let symbol: ByteArray = "YCB";
         let base_uri: ByteArray = "https://ipfs.io/ipfs/";
 
+        // Initialize components in the correct order
+        self.ownable.initializer(owner);
         self.erc721.initializer(name, symbol, base_uri);
         self.enumerable.initializer();
-        self.ownable.initializer(owner);
+        // SRC5 doesn't need initialization, just register interfaces if needed
     }
 
     #[abi(embed_v0)]

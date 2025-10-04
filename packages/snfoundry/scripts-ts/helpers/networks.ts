@@ -11,19 +11,20 @@ const PRIVATE_KEY_DEVNET =
 const RPC_URL_DEVNET = process.env.RPC_URL_DEVNET || "http://127.0.0.1:5050";
 const ACCOUNT_ADDRESS_DEVNET =
   process.env.ACCOUNT_ADDRESS_DEVNET ||
-  "0x64b48806902a367c8598f4f95c305e8c1a1acba5f082d294a43793113115691";
+  "0x064b48806902a367c8598f4f95c305e8c1a1acba5f082d294a43793113115691";
 
 const providerDevnet =
   RPC_URL_DEVNET && new RpcProvider({ nodeUrl: RPC_URL_DEVNET });
 const deployerDevnet =
   ACCOUNT_ADDRESS_DEVNET &&
   PRIVATE_KEY_DEVNET &&
-  new Account({
-    provider: providerDevnet,
-    address: ACCOUNT_ADDRESS_DEVNET,
-    signer: PRIVATE_KEY_DEVNET,
-    cairoVersion: "1",
-  });
+  providerDevnet &&
+  new Account(
+    providerDevnet,
+    ACCOUNT_ADDRESS_DEVNET,
+    PRIVATE_KEY_DEVNET,
+    "1"
+  );
 
 const STRK_TOKEN_ADDRESS_DEVNET =
   "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d";
@@ -35,12 +36,13 @@ const providerSepolia =
 const deployerSepolia =
   process.env.ACCOUNT_ADDRESS_SEPOLIA &&
   process.env.PRIVATE_KEY_SEPOLIA &&
-  new Account({
-    provider: providerSepolia,
-    address: process.env.ACCOUNT_ADDRESS_SEPOLIA,
-    signer: process.env.PRIVATE_KEY_SEPOLIA,
-    cairoVersion: "1",
-  });
+  providerSepolia &&
+  new Account(
+    providerSepolia,
+    process.env.ACCOUNT_ADDRESS_SEPOLIA,
+    process.env.PRIVATE_KEY_SEPOLIA,
+    "1"
+  );
 
 const STRK_TOKEN_ADDRESS =
   "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d";
@@ -52,11 +54,13 @@ const providerMainnet =
 const deployerMainnet =
   process.env.ACCOUNT_ADDRESS_MAINNET &&
   process.env.PRIVATE_KEY_MAINNET &&
-  new Account({
-    provider: providerMainnet,
-    address: process.env.ACCOUNT_ADDRESS_MAINNET,
-    signer: process.env.PRIVATE_KEY_MAINNET,
-  });
+  providerMainnet &&
+  new Account(
+    providerMainnet,
+    process.env.ACCOUNT_ADDRESS_MAINNET,
+    process.env.PRIVATE_KEY_MAINNET,
+    "1"
+  );
 
 const feeTokenOptions = {
   devnet: [{ name: "strk", address: STRK_TOKEN_ADDRESS_DEVNET }],
