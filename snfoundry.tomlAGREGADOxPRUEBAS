@@ -1,0 +1,8 @@
+[profile.default]
+network = "devnet"
+
+[network.devnet]
+url = "http://127.0.0.1:5050"
+chain_id = "SN_DEV"
+account_address = "${ACCOUNT_ADDRESS_DEVNET}"
+private_key = "${PRIVATE_KEY_DEVNET}"
