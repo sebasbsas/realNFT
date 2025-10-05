@@ -15,6 +15,7 @@ import {
   TypedData,
   RpcError,
   ETransactionVersion,
+  defaultDeployer,
 } from "starknet";
 import { DeployContractParams, Network } from "./types";
 import { green, red, yellow } from "./helpers/colorize-log";
@@ -167,8 +168,7 @@ const declareIfNot_NotWait = async (
   }
 
   try {
-    const declareOptions =
-      networkName === "devnet" ? { ...options, tip: 1000n } : { ...options };
+    const declareOptions = networkName === "devnet" ? { ...options, tip: 1000n } : { ...options };
     const { transaction_hash } = await deployer.declare(
       payload,
       declareOptions
@@ -227,37 +227,13 @@ const deployContract_NotWait = async (payload: {
   constructorCalldata: RawArgs;
 }) => {
   try {
-    // For Starknet.js v7.5.0, use the Universal Deployer Contract directly
-    // UDC V1 address for devnet/mainnet
-    const UDC_ADDRESS =
-      "0x041a78e741e5af2fec34b695679bc6891742439f7afb8484ecd7766661ad02bf";
-
-    const deployCall = {
-      contractAddress: UDC_ADDRESS,
-      entrypoint: "deployContract",
-      calldata: [
-        payload.classHash,
-        payload.salt,
-        payload.constructorCalldata.length,
-        ...(Array.isArray(payload.constructorCalldata)
-          ? payload.constructorCalldata
-          : []),
-      ],
-    };
-
-    deployCalls.push(deployCall);
-
-    // Calculate the contract address using the same logic as UDC
-    // For Starknet.js v7.5.0, use hash.calculateContractAddressFromHash
-    const contractAddress = hash.calculateContractAddressFromHash(
-      payload.salt,
-      payload.classHash,
-      payload.constructorCalldata,
+    const { calls, addresses } = defaultDeployer.buildDeployerCall(
+      payload,
       deployer.address
     );
-
+    deployCalls.push(...calls);
     return {
-      contractAddress: contractAddress,
+      contractAddress: addresses[0],
     };
   } catch (error) {
     console.error(red("Error building UDC call:"), error);
@@ -407,7 +383,7 @@ const deployContract = async (
     options
   );
 
-  let randomSalt = stark.randomAddress();
+  let randomSalt = "0x1"; // Simple salt for testing
 
   let { contractAddress } = await deployContract_NotWait({
     salt: randomSalt,
@@ -441,8 +417,7 @@ const executeDeployCalls = async (options?: UniversalDetails) => {
   }
 
   try {
-    const executeOptions =
-      networkName === "devnet" ? { ...options, tip: 1000n } : { ...options };
+    const executeOptions = networkName === "devnet" ? { ...options, tip: 1000n } : { ...options };
     let { transaction_hash } = await deployer.execute(
       deployCalls,
       executeOptions

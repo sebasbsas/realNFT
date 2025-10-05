@@ -1,4 +1,4 @@
-import { Contract, Provider, uint256, Abi } from "starknet";
+import { Contract, Provider, uint256, Abi, ETransactionVersion } from "starknet";
 import { red, yellow } from "./colorize-log";
 import { Network } from "../types";
 
@@ -81,7 +81,11 @@ export async function getBalance(
   tokenAddress: string
 ): Promise<bigint> {
   try {
-    const contract = new Contract(erc20ABI, tokenAddress, provider);
+    const contract = new Contract({
+      abi: erc20ABI,
+      address: tokenAddress,
+      providerOrAccount: provider,
+    });
     const { balance } = await contract.balance_of(account);
     return uint256.uint256ToBN(balance);
   } catch (error) {
@@ -92,10 +96,10 @@ export async function getBalance(
 
 function getTxVersionFromFeeToken(feeToken: string, isSierra?: boolean) {
   return feeToken === "strk"
-    ? TransactionVersion.V3
+    ? ETransactionVersion.V3
     : isSierra
-    ? TransactionVersion.V2
-    : TransactionVersion.V1;
+    ? ETransactionVersion.V2
+    : ETransactionVersion.V1;
 }
 
 /**

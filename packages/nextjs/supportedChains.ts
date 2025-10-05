@@ -20,7 +20,7 @@ const mainnetFork = {
       http: [],
     },
     public: {
-      http: [`${rpcUrlDevnet}/rpc`],
+      http: [rpcUrlDevnet],
     },
   },
   paymasterRpcUrls: {
@@ -37,7 +37,7 @@ const devnet = {
       http: [],
     },
     public: {
-      http: [`${rpcUrlDevnet}/rpc`],
+      http: [rpcUrlDevnet],
     },
   },
 } as const satisfies chains.Chain;
