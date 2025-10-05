@@ -19,12 +19,7 @@ const deployerDevnet =
   ACCOUNT_ADDRESS_DEVNET &&
   PRIVATE_KEY_DEVNET &&
   providerDevnet &&
-  new Account(
-    providerDevnet,
-    ACCOUNT_ADDRESS_DEVNET,
-    PRIVATE_KEY_DEVNET,
-    "1"
-  );
+  new Account(providerDevnet, ACCOUNT_ADDRESS_DEVNET, PRIVATE_KEY_DEVNET, "1");
 
 const STRK_TOKEN_ADDRESS_DEVNET =
   "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d";

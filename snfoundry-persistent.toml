@@ -1,0 +1,25 @@
+[sncast]
+accounts_file = ""
+
+[sncast.devnet-persistent]
+url = "http://127.0.0.1:5050"
+account = "deployer"
+chain_id = "SN_DEVNET"
+
+[sncast.devnet-persistent.accounts.deployer]
+address = "0x064b48806902a367c8598f4f95c305e8c1a1acba5f082d294a43793113115691"
+private-key = "0x0000000000000000000000000071d7bb07b9a64f6f78ac4c816aff4da9"
+
+[sncast.devnet]
+url = "http://127.0.0.1:5050"
+account = "deployer"
+chain_id = "SN_DEVNET"
+
+[sncast.devnet.accounts.deployer]
+address = "0x064b48806902a367c8598f4f95c305e8c1a1acba5f082d294a43793113115691"
+private-key = "0x0000000000000000000000000071d7bb07b9a64f6f78ac4c816aff4da9"
+
+[sncast.devnet2]
+account = "account-1"
+accounts-file = "/home/user/.starknet_accounts/starknet_open_zeppelin_accounts.json"
+url = "http://127.0.0.1:5050"

@@ -28,7 +28,7 @@ pub mod SimpleNFT {
     // Use internal implementations but do not expose them
     impl ERC721InternalImpl = ERC721Component::InternalImpl<ContractState>;
     impl OwnableInternalImpl = OwnableComponent::InternalImpl<ContractState>;
-    
+
     // Implement ERC721HooksTrait
     impl ERC721HooksImpl of ERC721Component::ERC721HooksTrait<ContractState> {
         fn before_update(
@@ -36,8 +36,7 @@ pub mod SimpleNFT {
             to: ContractAddress,
             token_id: u256,
             auth: ContractAddress,
-        ) {
-            // Empty implementation - no hooks needed
+        ) {// Empty implementation - no hooks needed
         }
     }
 
@@ -90,13 +89,13 @@ pub mod SimpleNFT {
     pub impl SimpleNFTImpl of ISimpleNFT<ContractState> {
         fn mint_item(ref self: ContractState, recipient: ContractAddress, uri: ByteArray) -> u256 {
             self.ownable.assert_only_owner();
-            
+
             let token_id = self.next_token_id.read();
             self.erc721.mint(recipient, token_id);
             self.token_uris.write(token_id, uri.clone());
-            
+
             self.next_token_id.write(token_id + 1);
-            
+
             self.emit(TokenMinted { recipient, token_id, uri });
             token_id
         }

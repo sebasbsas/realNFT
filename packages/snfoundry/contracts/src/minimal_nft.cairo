@@ -13,9 +13,9 @@ pub trait IMinimalNFT<T> {
 
 #[starknet::contract]
 pub mod MinimalNFT {
-    use super::{ContractAddress, IMinimalNFT};
-    use starknet::storage::*;
     use starknet::get_caller_address;
+    use starknet::storage::*;
+    use super::{ContractAddress, IMinimalNFT};
 
     #[storage]
     pub struct Storage {
@@ -60,15 +60,15 @@ pub mod MinimalNFT {
         fn mint(ref self: ContractState, to: ContractAddress) -> u256 {
             let token_id = self.next_token_id.read();
             self.owners.write(token_id, to);
-            
+
             let current_balance = self.balances.read(to);
             self.balances.write(to, current_balance + 1);
-            
+
             let current_supply = self.total_supply.read();
             self.total_supply.write(current_supply + 1);
-            
+
             self.next_token_id.write(token_id + 1);
-            
+
             self.emit(Mint { to, token_id });
             token_id
         }

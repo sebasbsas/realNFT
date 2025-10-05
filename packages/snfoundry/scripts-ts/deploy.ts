@@ -48,7 +48,8 @@ const deployScript = async (): Promise<void> => {
   await deployContract({
     contract: "YourCollectible",
     constructorArgs: {
-      owner: "0x078662e7352d062084b0010068b99288486c2d8b914f6e2a55ce945f8792c8b1",
+      owner:
+        "0x064b48806902a367c8598f4f95c305e8c1a1acba5f082d294a43793113115691",
     },
   });
 };

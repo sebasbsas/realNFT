@@ -73,11 +73,7 @@ export const postDeploymentBalanceSummary = async ({
     const { abi } = await provider.getClassAt(tokenInfo.address);
 
     // Create a Contract instance for the ERC20 token.
-    const erc20Contract = new Contract(
-      abi,
-      tokenInfo.address,
-      provider
-    );
+    const erc20Contract = new Contract(abi, tokenInfo.address, provider);
 
     // Call the `balanceOf` function.
     // This correctly assumes `balanceOf` returns a BigInt directly.
