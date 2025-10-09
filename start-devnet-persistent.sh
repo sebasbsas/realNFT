@@ -1,37 +1,47 @@
 #!/bin/bash
 
 # Script para iniciar Starknet Devnet en modo persistente
-# Este script NO detiene el devnet actual, solo inicia uno nuevo con persistencia
+# Compatible con starknet-devnet 0.5.1
+# NOTA: Esta versión solo GUARDA el estado, NO puede recargarlo automáticamente
 
-echo "🚀 Iniciando Starknet Devnet en modo persistente..."
+echo "🚀 Iniciando Starknet Devnet con guardado de estado..."
 
-# Crear directorio para la base de datos si no existe
+# Crear directorio para dumps si no existe
 mkdir -p ./devnet-data
 
-# Iniciar devnet con persistencia en puerto 5050 (reemplaza el actual)
+# Verificar si existe dump previo
+if [ -f "./devnet-data/devnet_dump.pkl" ]; then
+    echo "⚠️  Dump previo encontrado en ./devnet-data/devnet_dump.pkl"
+    echo "⚠️  Esta versión de devnet NO puede recargarlo automáticamente"
+    echo "⚠️  El dump será sobrescrito con el nuevo estado"
+    echo ""
+fi
+
+# Iniciar devnet con guardado de estado
 starknet-devnet \
     --port 5050 \
-    --db-path ./devnet-data/devnet.db \
     --seed 0 \
     --accounts 1 \
     --initial-balance 1000000000000000000000 \
     --gas-price 1000000000 \
-    --chain-id SN_DEVNET \
-    --fork-network devnet \
-    --fork-block 0 \
     --host 127.0.0.1 \
     --timeout 60 \
-    --disable-rpc-request-validation \
-    --disable-request-validation \
-    --allow-max-fee-override \
-    --max-fee-override 1000000000000000000000 &
+    --dump-path ./devnet-data/devnet_dump.pkl \
+    --dump-on block &
 
-echo "✅ Devnet persistente iniciado en puerto 5050"
-echo "📊 Base de datos: ./devnet-data/devnet.db"
+DEVNET_PID=$!
+
+echo "✅ Devnet iniciado en puerto 5050"
+echo "📊 El estado se guardará en: ./devnet-data/devnet_dump.pkl"
 echo "🌐 URL: http://127.0.0.1:5050"
-echo "🔗 Chain ID: SN_DEVNET"
+echo "🆔 PID del proceso: $DEVNET_PID"
 echo ""
-echo "✅ Tu aplicación NextJS ya está configurada para este puerto"
-echo "✅ Los contratos desplegados se mantendrán entre reinicios"
+echo "💾 Modo: --dump-on block (guarda después de cada bloque minado)"
 echo ""
-echo "PID del proceso: $!"
+echo "⚠️  LIMITACIÓN DE VERSIÓN 0.5.1:"
+echo "   - Guarda el estado en tiempo real ✅"
+echo "   - NO puede recargar el estado automáticamente ❌"
+echo "   - Para persistencia real, actualiza a starknet-devnet-rs"
+echo ""
+echo "Para detener: kill $DEVNET_PID (o pkill starknet-devnet)"
+echo ""

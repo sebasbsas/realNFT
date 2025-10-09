@@ -61,14 +61,14 @@ fn test_mint_item() {
     assert(first_token_id == expected_token_id, 'Token ID must be 1');
     println!("Item minted! Token ID: {:?}", first_token_id);
     let new_balance = contract_state.erc721.balance_of(tester_address);
-    assert_eq!(new_balance, starting_balance + 1, "Starting Balance must be increased by 1");
+    assert(new_balance == starting_balance + 1, 'Balance must increase by 1');
     println!("Tester address new balance: {:?}", new_balance);
 
     // Should track tokens of owner by index
     let index = new_balance - 1;
     let first_token_id = contract_state.enumerable.token_of_owner_by_index(tester_address, index);
     println!("Token of owner(0x{:x}) by index({:?}): {:?}", tester_address, index, first_token_id);
-    assert_eq!(first_token_id, expected_token_id, "Token must be 1");
+    assert(first_token_id == expected_token_id, 'Token must be 1');
 
     // mint another item
     let url2: ByteArray = "QmVHi3c4qkZcH3cJynzDXRm5n7dzc9R9TUtUcfnWQvhdcw";
@@ -77,7 +77,7 @@ fn test_mint_item() {
     assert(second_token_id == expected_token_id, 'Token ID must be 2');
     println!("Item minted! Token ID: {:?}", second_token_id);
     let new_balance = contract_state.erc721.balance_of(tester_address);
-    assert_eq!(new_balance, starting_balance + 2, "Starting Balance must be increased by 2");
+    assert(new_balance == starting_balance + 2, 'Balance must increase by 2');
     println!("Tester address New balance: {:?}", new_balance);
 
     // transfer item
@@ -138,14 +138,14 @@ fn test_mint_item2() {
     assert(first_token_id == expected_token_id, 'Token ID must be 1');
     println!("Item minted! Token ID: {:?}", first_token_id);
     let new_balance = contract_state.erc721.balance_of(tester_address);
-    assert_eq!(new_balance, starting_balance + 1, "Starting Balance must be increased by 1");
+    assert(new_balance == starting_balance + 1, 'Balance must increase by 1');
     println!("Tester address new balance: {:?}", new_balance);
 
     // Should track tokens of owner by index
     let index = new_balance - 1;
     let first_token_id = contract_state.enumerable.token_of_owner_by_index(tester_address, index);
     println!("Token of owner(0x{:x}) by index({:?}): {:?}", tester_address, index, first_token_id);
-    assert_eq!(first_token_id, expected_token_id, "Token must be 1");
+    assert(first_token_id == expected_token_id, 'Token must be 1');
 
     // transfer item
     let new_owner = NEW_OWNER;
