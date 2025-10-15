@@ -1,31 +1,32 @@
-# 📚 Documentation Index - realNFT Project
+# 📚 Documentation Index - realNFT Project (UPDATED)
 
 > Índice completo de toda la documentación del proyecto Scaffold-Stark 2
 
 **Última actualización:** Enero 2025  
 **Versión del proyecto:** Scaffold-Stark 2  
-**Contrato:** QuestlyNFTStandard (ERC721 estándar)  
-**Dirección:** 0x434c8fefb5d4f6e48c26d44c47fcc896e67592ad67840b961d6b5f4614ef4aa  
-**Devnet version:** starknet-devnet 0.5.1 (Python)
+**Estado:** ✅ 3 Frontends Funcionales + Configuración Unificada  
+**Configuración:** Todos los contratos en `deployedContracts.ts`  
+
+## 🚀 **FRONTENDS DISPONIBLES:**
+
+| Frontend | URL | Contrato | IPFS | Estado |
+|----------|-----|----------|------|--------|
+| **QuestlyNFT** | `/mint` | QuestlyNFT | ✅ Requerido | ✅ Funcional |
+| **QuestlyNFTStandard** | `/mint-standard` | QuestlyNFTStandard | ✅ Requerido | ✅ Funcional |
+| **MinimalNFT** | `/mint-minimal` | MinimalNFT | ❌ No requerido | ✅ Funcional |
 
 ---
 
-## 🚀 Quick Access
+## 🚀 Quick Access (Actualizado)
 
-| Documento | Descripción | Lectura | Prioridad |
-|-----------|-------------|---------|-----------|
-| [START_HERE.md](#-start_heremd) | Punto de entrada principal | 10 min | ⭐⭐⭐ |
-| [QUICK_START_README.md](#-quick_start_readmemd) | Guía rápida práctica | 5 min | ⭐⭐⭐ |
-| [QUESTLY_NFT_MAINNET_MINT_INSTRUCTIONS.md](#-questly_nft_mainnet_mint_instructionsmd) | Guía de minteo QuestlyNFT | 15 min | ⭐⭐⭐ |
-| [QUESTLY_NFT_STANDARD_INSTRUCTIONS.md](#-questly_nft_standard_instructionsmd) | Guía de minteo QuestlyNFTStandard | 15 min | ⭐⭐⭐ |
-| [QUICK_START_MINT.md](#-quick_start_mintmd) | Inicio rápido minteo | 5 min | ⭐⭐⭐ |
-| [QUICK_START_MINT_STANDARD.md](#-quick_start_mint_standardmd) | Inicio rápido minteo estándar | 3 min | ⭐⭐⭐ |
-| [TROUBLESHOOTING_FRONTEND.md](#-troubleshooting_frontendmd) | Solución problemas frontend | 10 min | ⭐⭐ |
-| [HOOKS_EXPORT_FIX.md](#-hooks_export_fixmd) | Fix específico hooks Scaffold-Stark | 5 min | ⭐⭐ |
-| [SERVER_STATUS_LOG.md](#-server_status_logmd) | Logs y estado del servidor | 8 min | ⭐ |
-| [DEBUGGING.md](#-debuggingmd) | Info del contrato + debug | 8 min | ⭐⭐ |
-| [FRONTEND_INTEGRATION.md](#-frontend_integrationmd) | Ejemplos de frontend | 15 min | ⭐⭐⭐ |
-| [DEVNET_PERSISTENTE.md](#-devnet_persistentemd) | Guía técnica completa | 20 min | ⭐ |
+| Documento | Descripción | Lectura | Estado |
+|-----------|-------------|---------|--------|
+| [QUICK_START_ALL_FRONTENDS.md](#quick-start-all-frontends) | Guía rápida para los 3 frontends | 5 min | ✅ Nuevo |
+| [CONTRACTS_CONFIGURATION_UNIFIED.md](#contracts-configuration-unified) | Configuración unificada de contratos | 8 min | ✅ Nuevo |
+| [MINT_STANDARD_IPFS_FIX.md](#mint-standard-ipfs-fix) | Corrección del frontend mint-standard | 5 min | ✅ Nuevo |
+| [MINIMAL_NFT_CONFIGURATION_FIX.md](#minimal-nft-configuration-fix) | Fix configuración MinimalNFT | 5 min | ✅ Nuevo |
+| [TROUBLESHOOTING_FRONTEND.md](#troubleshooting-frontend) | Solución problemas frontend | 10 min | ✅ Actualizado |
+| [HOOKS_EXPORT_FIX.md](#hooks-export-fix) | Fix específico hooks Scaffold-Stark | 5 min | ✅ Actualizado |
 
 ---
 
@@ -927,5 +928,61 @@ Clarificación completa sobre qué contratos están realmente desplegados vs cu�
 **Fecha:** Enero 2025  
 **Versión:** 1.1  
 **Proyecto:** Scaffold-Stark 2 - realNFT  
+---
+
+## 🔧 **NUEVOS DOCUMENTOS (Enero 2025):**
+
+### **CONTRACTS_CONFIGURATION_UNIFIED.md**
+**Estado:** ✅ Nuevo  
+**Descripción:** Documentación completa de la unificación de contratos de `externalContracts.ts` a `deployedContracts.ts`
+
+### **MINT_STANDARD_IPFS_FIX.md**  
+**Estado:** ✅ Nuevo  
+**Descripción:** Corrección del frontend `mint-standard` para incluir campo IPFS URI
+
+### **MINIMAL_NFT_CONFIGURATION_FIX.md**
+**Estado:** ✅ Nuevo  
+**Descripción:** Fix para el error "Target Contract is not deployed" de MinimalNFT
+
+### **CONTRACTS_CONFIGURATION_EXPLANATION.md**
+**Estado:** ✅ Nuevo  
+**Descripción:** Explicación detallada de las diferencias entre `externalContracts.ts` y `deployedContracts.ts`
+
+### **QUICK_START_ALL_FRONTENDS.md**
+**Estado:** ✅ Nuevo  
+**Descripción:** Guía rápida actualizada para los 3 frontends funcionales
+
+---
+
+## 🎯 **ESTADO ACTUAL DEL PROYECTO:**
+
+### ✅ **Funcionalidades Completadas:**
+1. **3 Frontends Funcionales** - Todos operativos en Mainnet
+2. **Configuración Unificada** - Todos los contratos en `deployedContracts.ts`
+3. **Fix IPFS URI** - Frontend `mint-standard` corregido
+4. **Fix MinimalNFT** - Error "Target Contract is not deployed" resuelto
+5. **Documentación Completa** - Todos los cambios documentados
+
+### 📊 **Contratos en Mainnet:**
+| Contrato | Address | IPFS | Estado | Frontend |
+|----------|---------|------|--------|----------|
+| QuestlyNFT | `0x2cf4...0080` | ✅ | ✅ Funcional | `/mint` |
+| QuestlyNFTStandard | `0x434c...f4aa` | ✅ | ✅ Funcional | `/mint-standard` |
+| MinimalNFT | `0x7556...e88` | ❌ | ✅ Funcional | `/mint-minimal` |
+
+### 🚀 **Comandos Rápidos:**
+```bash
+# Iniciar servidor de desarrollo
+cd /home/user/testing/realNFT/packages/nextjs
+yarn dev
+
+# URLs de los frontends
+# http://localhost:3000/mint          - QuestlyNFT (con IPFS)
+# http://localhost:3000/mint-standard - QuestlyNFTStandard (con IPFS)  
+# http://localhost:3000/mint-minimal  - MinimalNFT (sin IPFS)
+```
+
+---
+
 **Última actualización de este índice:** Enero 2025
 
