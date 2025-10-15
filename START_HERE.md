@@ -1,7 +1,9 @@
 # 🎯 START HERE - Guía de Inicio para Devnet
 
 > **📅 Creado:** Octubre 2025  
-> **🎯 Propósito:** Punto de entrada a toda la documentación de devnet del proyecto
+> **📅 Actualizado:** Enero 2025  
+> **🎯 Propósito:** Punto de entrada a toda la documentación de devnet del proyecto  
+> **🔗 Contrato Mainnet:** QuestlyNFTStandard (ERC721 estándar) - `0x434c8fefb5d4f6e48c26d44c47fcc896e67592ad67840b961d6b5f4614ef4aa`
 
 ---
 
@@ -150,6 +152,40 @@ Este proyecto tiene la siguiente documentación sobre devnet:
 
 ---
 
+### 📋 3. list_tests.sh (Listar Tests)
+
+**Archivo:** `./list_tests.sh`  
+**Uso:** `./list_tests.sh`
+
+**¿Qué hace?**
+1. 🔍 Busca todos los tests en test_contract.cairo
+2. 📊 Los enumera y formatea
+3. 📈 Muestra el total de tests
+4. 💡 Proporciona comandos útiles
+
+**Salida típica:**
+```
+📋 Tests disponibles en test_contract.cairo:
+
+ 1. test_mint_item
+ 2. test_mint_item2
+ 3. test_token_uri_of_nonexistent_token
+ 4. test_owner_of_nonexistent_token
+ 5. test_transfer_from_unauthorized
+ 6. test_balance_of_zero_address
+
+Total de tests: 6
+```
+
+**Úsalo cuando:**
+- ✅ Quieres ver qué tests existen
+- ✅ Necesitas el nombre exacto de un test
+- ✅ Estás documentando nuevos tests
+
+**Nota:** `snforge --list` no existe en la versión 0.50.0, por eso creamos este script.
+
+---
+
 ## 📁 Estructura de Archivos
 
 ```
@@ -169,6 +205,7 @@ Este proyecto tiene la siguiente documentación sobre devnet:
 ├── 🛠️ Scripts Auxiliares:
 │   ├── backup-current-devnet.sh   ← Backups
 │   ├── clean_devnet.sh            ← Limpieza
+│   ├── list_tests.sh              ← Listar tests disponibles
 │   └── reset-devnet-data.sh       ← Reset completo
 │
 └── 📦 Datos:

@@ -2,8 +2,10 @@
 
 > Índice completo de toda la documentación del proyecto Scaffold-Stark 2
 
-**Última actualización:** Octubre 2025  
+**Última actualización:** Enero 2025  
 **Versión del proyecto:** Scaffold-Stark 2  
+**Contrato:** QuestlyNFTStandard (ERC721 estándar)  
+**Dirección:** 0x434c8fefb5d4f6e48c26d44c47fcc896e67592ad67840b961d6b5f4614ef4aa  
 **Devnet version:** starknet-devnet 0.5.1 (Python)
 
 ---
@@ -14,6 +16,13 @@
 |-----------|-------------|---------|-----------|
 | [START_HERE.md](#-start_heremd) | Punto de entrada principal | 10 min | ⭐⭐⭐ |
 | [QUICK_START_README.md](#-quick_start_readmemd) | Guía rápida práctica | 5 min | ⭐⭐⭐ |
+| [QUESTLY_NFT_MAINNET_MINT_INSTRUCTIONS.md](#-questly_nft_mainnet_mint_instructionsmd) | Guía de minteo QuestlyNFT | 15 min | ⭐⭐⭐ |
+| [QUESTLY_NFT_STANDARD_INSTRUCTIONS.md](#-questly_nft_standard_instructionsmd) | Guía de minteo QuestlyNFTStandard | 15 min | ⭐⭐⭐ |
+| [QUICK_START_MINT.md](#-quick_start_mintmd) | Inicio rápido minteo | 5 min | ⭐⭐⭐ |
+| [QUICK_START_MINT_STANDARD.md](#-quick_start_mint_standardmd) | Inicio rápido minteo estándar | 3 min | ⭐⭐⭐ |
+| [TROUBLESHOOTING_FRONTEND.md](#-troubleshooting_frontendmd) | Solución problemas frontend | 10 min | ⭐⭐ |
+| [HOOKS_EXPORT_FIX.md](#-hooks_export_fixmd) | Fix específico hooks Scaffold-Stark | 5 min | ⭐⭐ |
+| [SERVER_STATUS_LOG.md](#-server_status_logmd) | Logs y estado del servidor | 8 min | ⭐ |
 | [DEBUGGING.md](#-debuggingmd) | Info del contrato + debug | 8 min | ⭐⭐ |
 | [FRONTEND_INTEGRATION.md](#-frontend_integrationmd) | Ejemplos de frontend | 15 min | ⭐⭐⭐ |
 | [DEVNET_PERSISTENTE.md](#-devnet_persistentemd) | Guía técnica completa | 20 min | ⭐ |
@@ -21,6 +30,228 @@
 ---
 
 ## 📖 Documentos Disponibles
+
+### 🎨 QUESTLY_NFT_MAINNET_MINT_INSTRUCTIONS.md
+**Ubicación:** `/home/user/testing/realNFT/QUESTLY_NFT_MAINNET_MINT_INSTRUCTIONS.md`  
+**Tamaño:** 15.2 KB  
+**Prioridad:** ⭐⭐⭐ ALTA
+
+**Descripción:**
+Guía completa para mintear NFTs en el contrato QuestlyNFTStandard (ERC721 estándar) desplegado en Starknet Mainnet. Contiene:
+- Información detallada del contrato QuestlyNFTStandard
+- Implementación completa del estándar ERC721 con OpenZeppelin
+- Compatibilidad total con exploradores (Starkscan, Voyager)
+- Pasos completos para configurar y usar el frontend
+- Validaciones y características de seguridad
+- Solución de problemas específicos
+- Ejemplos de uso y configuración
+- Referencias técnicas del contrato
+
+**Léelo si:**
+- ✅ Quieres mintear NFTs en el contrato QuestlyNFT
+- ✅ Necesitas entender cómo funciona el frontend de minteo
+- ✅ Tienes problemas con el proceso de minteo
+
+**Contenido principal:**
+```
+1. Información del contrato QuestlyNFT
+2. Configuración del frontend
+3. Cómo mintear NFTs paso a paso
+4. Validaciones y seguridad
+5. Solución de problemas
+6. Funciones del contrato
+```
+
+---
+
+### 🎨 QUESTLY_NFT_STANDARD_INSTRUCTIONS.md
+**Ubicación:** `/home/user/testing/realNFT/QUESTLY_NFT_STANDARD_INSTRUCTIONS.md`  
+**Tamaño:** 18.3 KB  
+**Prioridad:** ⭐⭐⭐ ALTA
+
+**Descripción:**
+Guía completa para mintear NFTs en el contrato QuestlyNFTStandard (ERC721 estándar) desplegado en Starknet Mainnet. Contiene:
+- Información detallada del contrato QuestlyNFTStandard
+- Implementación completa del estándar ERC721 con OpenZeppelin
+- Pasos completos para configurar y usar el frontend
+- Validaciones y características de seguridad
+- Diferencias con QuestlyNFT (personalizado vs estándar)
+- Solución de problemas específicos
+- Referencias técnicas del contrato
+
+**Léelo si:**
+- ✅ Quieres mintear NFTs estándar sin metadata personalizada
+- ✅ Necesitas entender las diferencias entre QuestlyNFT y QuestlyNFTStandard
+- ✅ Tienes problemas con el proceso de minteo estándar
+
+**Contenido principal:**
+```
+1. Información del contrato QuestlyNFTStandard
+2. Configuración del frontend
+3. Cómo mintear NFTs estándar paso a paso
+4. Diferencias con QuestlyNFT
+5. Validaciones y seguridad
+6. Solución de problemas
+7. Funciones del contrato
+```
+
+---
+
+### ⚡ QUICK_START_MINT_STANDARD.md
+**Ubicación:** `/home/user/testing/realNFT/QUICK_START_MINT_STANDARD.md`  
+**Tamaño:** 2.8 KB  
+**Prioridad:** ⭐⭐⭐ ALTA
+
+**Descripción:**
+Guía súper rápida para empezar a mintear NFTs estándar inmediatamente. Contiene:
+- Comandos esenciales (3 comandos)
+- Pasos de minteo en 3 pasos (más simple)
+- Checklist pre-minteo
+- Comparación con QuestlyNFT
+- Links de verificación
+- Referencias a documentación completa
+
+**Léelo si:**
+- ✅ Quieres empezar a mintear NFTs estándar rápido
+- ✅ Ya conoces el proceso y necesitas un resumen
+- ✅ Necesitas comandos rápidos
+
+**Contenido principal:**
+```
+1. Inicio rápido (3 comandos)
+2. Mintear en 3 pasos (más simple)
+3. Checklist pre-minteo
+4. Diferencias con QuestlyNFT
+5. Verificar NFT minteado
+6. Referencias
+```
+
+---
+
+### ⚡ QUICK_START_MINT.md
+**Ubicación:** `/home/user/testing/realNFT/QUICK_START_MINT.md`  
+**Tamaño:** 3.8 KB  
+**Prioridad:** ⭐⭐⭐ ALTA
+
+**Descripción:**
+Guía rápida para empezar a mintear NFTs inmediatamente. Contiene:
+- Comandos esenciales (3 comandos)
+- Pasos de minteo en 4 pasos
+- Checklist pre-minteo
+- Links de verificación
+- Referencias a documentación completa
+
+**Léelo si:**
+- ✅ Quieres empezar a mintear rápido
+- ✅ Ya conoces el proceso y necesitas un resumen
+- ✅ Necesitas comandos rápidos
+
+**Contenido principal:**
+```
+1. Inicio rápido (3 comandos)
+2. Mintear en 4 pasos
+3. Checklist pre-minteo
+4. Verificar NFT minteado
+5. Referencias
+```
+
+---
+
+### 🔧 TROUBLESHOOTING_FRONTEND.md
+**Ubicación:** `/home/user/testing/realNFT/TROUBLESHOOTING_FRONTEND.md`  
+**Tamaño:** 12.4 KB  
+**Prioridad:** ⭐⭐ MEDIA
+
+**Descripción:**
+Guía completa de solución de problemas para el frontend de minteo. Contiene:
+- 11 errores comunes y sus soluciones
+- Comandos de diagnóstico
+- Verificaciones paso a paso
+- Logs útiles para debugging
+- Checklist de verificación
+
+**Léelo si:**
+- ✅ Tienes errores al usar el frontend
+- ✅ El servidor no inicia correctamente
+- ✅ Hay problemas de conexión o configuración
+
+**Contenido principal:**
+```
+1. Error: "Could not find a production build"
+2. Error: "ENOENT: no such file or directory"
+3. Error: "Module not found"
+4. Error: "Failed to fetch"
+5. Error: "Contract not found"
+6. Error: "Wallet not connected"
+7. Error: "Transaction failed"
+8. Error: "URI invalid"
+9. Error: "Page not found"
+10. Error: "useScaffoldWriteContract is not a function"
+11. Error: "Build failed"
++ Comandos de diagnóstico
+```
+
+---
+
+### 🔧 HOOKS_EXPORT_FIX.md
+**Ubicación:** `/home/user/testing/realNFT/HOOKS_EXPORT_FIX.md`  
+**Tamaño:** 4.2 KB  
+**Prioridad:** ⭐⭐ MEDIA
+
+**Descripción:**
+Documentación específica del fix aplicado para resolver el error "useScaffoldWriteContract is not a function". Contiene:
+- Descripción detallada del problema
+- Solución paso a paso
+- Archivos modificados
+- Comandos de verificación
+- Estado antes y después del fix
+
+**Léelo si:**
+- ✅ Tienes el error "useScaffoldWriteContract is not a function"
+- ✅ Quieres entender qué se corrigió exactamente
+- ✅ Necesitas verificar que el fix se aplicó correctamente
+
+**Contenido principal:**
+```
+1. Problema identificado
+2. Solución aplicada
+3. Hooks ahora disponibles
+4. Estado actual
+5. Verificación del fix
+```
+
+---
+
+### 📊 SERVER_STATUS_LOG.md
+**Ubicación:** `/home/user/testing/realNFT/SERVER_STATUS_LOG.md`  
+**Tamaño:** 8.7 KB  
+**Prioridad:** ⭐ BAJA
+
+**Descripción:**
+Log completo del estado actual del servidor y resumen de todos los problemas resueltos durante el desarrollo. Contiene:
+- Logs completos del servidor Next.js
+- Métricas de compilación y rendimiento
+- Endpoints verificados y sus códigos de estado
+- Configuración actual del servidor
+- Comandos de monitoreo continuo
+
+**Léelo si:**
+- ✅ Quieres ver el estado completo del servidor
+- ✅ Necesitas información técnica detallada
+- ✅ Quieres entender el rendimiento del sistema
+
+**Contenido principal:**
+```
+1. Logs del servidor
+2. Problemas resueltos
+3. Endpoints verificados
+4. Módulos compilados
+5. Configuración del servidor
+6. Métricas de rendimiento
+7. Monitoreo continuo
+```
+
+---
 
 ### 🎯 START_HERE.md
 **Ubicación:** `/home/user/testing/realNFT/START_HERE.md`  
@@ -275,6 +506,48 @@ Inicia solo el devnet con guardado de estado.
 - ✅ Solo necesitas el devnet
 - ✅ Vas a desplegar manualmente
 - ✅ Estás haciendo pruebas específicas
+
+---
+
+### 📋 list_tests.sh
+**Ubicación:** `/home/user/testing/realNFT/list_tests.sh`  
+**Tamaño:** 0.5 KB  
+**Permisos:** Ejecutable
+
+**Descripción:**
+Lista todos los tests disponibles en el proyecto.
+
+**Funcionalidad:**
+1. Busca todas las funciones de test en test_contract.cairo
+2. Las enumera y formatea
+3. Muestra el total de tests
+4. Proporciona comandos útiles
+
+**Uso:**
+```bash
+./list_tests.sh
+```
+
+**Output ejemplo:**
+```
+📋 Tests disponibles en test_contract.cairo:
+
+ 1. test_mint_item
+ 2. test_mint_item2
+ 3. test_token_uri_of_nonexistent_token
+ 4. test_owner_of_nonexistent_token
+ 5. test_transfer_from_unauthorized
+ 6. test_balance_of_zero_address
+
+Total de tests: 6
+```
+
+**Cuándo usarlo:**
+- ✅ Quieres ver qué tests existen
+- ✅ Necesitas el nombre exacto de un test
+- ✅ Estás documentando nuevos tests
+
+**Nota:** `snforge --list` no existe en la versión 0.50.0, por eso creamos este script.
 
 ---
 
@@ -579,13 +852,80 @@ realNFT/
 
 ---
 
+---
+
+## 🎯 MINIMAL_NFT_FRONTEND_GUIDE.md
+**Ubicación:** `/home/user/testing/realNFT/MINIMAL_NFT_FRONTEND_GUIDE.md`  
+**Tamaño:** 8.5 KB  
+**Prioridad:** ⭐⭐ MEDIA
+
+**Descripción:**
+Guía completa del frontend para MinimalNFT - un contrato ERC721 básico SIN soporte IPFS. Contiene:
+- Características del MinimalNFT (sin metadata)
+- Acceso y navegación al frontend
+- Funcionalidad de minting simple
+- Configuración técnica del contrato
+- Comparación con otros contratos del proyecto
+- Casos de uso recomendados
+- Información del contrato desplegado
+
+**Léelo si:**
+- Quieres usar el MinimalNFT (sin IPFS)
+- Necesitas un NFT básico para pruebas
+- Buscas una solución económica sin metadata
+- Quieres entender las limitaciones del contrato
+
+---
+
+## ✅ MINIMAL_NFT_VERIFICATION_UPDATE.md
+**Ubicación:** `/home/user/testing/realNFT/MINIMAL_NFT_VERIFICATION_UPDATE.md`  
+**Tamaño:** 6.2 KB  
+**Prioridad:** ⭐ MEDIA
+
+**Descripción:**
+Actualización de la verificación del MinimalNFT confirmando su existencia en mainnet. Contiene:
+- Evidencia de que el contrato SÍ existe
+- Corrección del análisis anterior
+- Estado actualizado de todos los contratos
+- Próximos pasos para integración
+- Conclusiones y acciones requeridas
+
+**Léelo si:**
+- Quieres entender el estado real del MinimalNFT
+- Necesitas verificar la existencia del contrato
+- Buscas información actualizada sobre el deployment
+
+---
+
+## 📋 CONTRACTS_CLARIFICATION_GUIDE.md
+**Ubicación:** `/home/user/testing/realNFT/CONTRACTS_CLARIFICATION_GUIDE.md`  
+**Tamaño:** 7.8 KB  
+**Prioridad:** ⭐⭐⭐ ALTA
+
+**Descripción:**
+Clarificación completa sobre qué contratos están realmente desplegados vs cuáles son solo de prueba. Contiene:
+- Lista de los 3 contratos funcionales (desplegados en mainnet)
+- Lista de todos los contratos de prueba/desarrollo
+- Tabla comparativa detallada
+- Explicación de por qué existen tantos contratos
+- Recomendaciones de uso
+- Estado real vs archivos de desarrollo
+
+**Léelo si:**
+- Quieres entender qué contratos usar realmente
+- Te confunden los muchos archivos .cairo en el proyecto
+- Necesitas saber cuáles son funcionales vs experimentales
+- Quieres evitar usar contratos que no están desplegados
+
+---
+
 **¡Todo listo para desarrollar tu dApp de NFTs en Starknet!** 🎨🚀⚡
 
 ---
 
 **Creado por:** Claude (AI Assistant)  
-**Fecha:** Octubre 2025  
-**Versión:** 1.0  
+**Fecha:** Enero 2025  
+**Versión:** 1.1  
 **Proyecto:** Scaffold-Stark 2 - realNFT  
-**Última actualización de este índice:** Octubre 9, 2025
+**Última actualización de este índice:** Enero 2025
 

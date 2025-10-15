@@ -9,6 +9,27 @@
 
 ## 🚀 Quick Start
 
+### Listar todos los tests disponibles:
+
+```bash
+# Desde el root del proyecto
+./list_tests.sh
+```
+
+**Output ejemplo:**
+```
+📋 Tests disponibles en test_contract.cairo:
+
+ 1. test_mint_item
+ 2. test_mint_item2
+ 3. test_token_uri_of_nonexistent_token
+ 4. test_owner_of_nonexistent_token
+ 5. test_transfer_from_unauthorized
+ 6. test_balance_of_zero_address
+
+Total de tests: 6
+```
+
 ### Ejecutar TODOS los tests:
 
 ```bash
@@ -19,20 +40,22 @@ yarn test
 O directamente:
 
 ```bash
-cd packages/snfoundry
+cd packages/snfoundry/contracts
 snforge test
 ```
 
 ### Ejecutar un test específico:
 
 ```bash
+cd packages/snfoundry/contracts
 snforge test test_mint_item
 ```
 
 ### Ejecutar con output detallado:
 
 ```bash
-snforge test --detailed
+cd packages/snfoundry/contracts
+snforge test --trace-verbosity detailed
 ```
 
 ---

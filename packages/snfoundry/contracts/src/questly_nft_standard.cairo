@@ -1,12 +1,12 @@
 use starknet::ContractAddress;
 
 #[starknet::interface]
-pub trait IYourCollectible<T> {
+pub trait IQuestlyNFTStandard<T> {
     fn mint_item(ref self: T, recipient: ContractAddress, uri: ByteArray) -> u256;
 }
 
 #[starknet::contract]
-pub mod YourCollectible {
+pub mod QuestlyNFTStandard {
     use contracts::components::counter::CounterComponent;
     use openzeppelin_access::ownable::OwnableComponent;
     use openzeppelin_introspection::src5::SRC5Component;
@@ -15,7 +15,7 @@ pub mod YourCollectible {
     use openzeppelin_token::erc721::extensions::ERC721EnumerableComponent::InternalTrait as EnumerableInternalTrait;
     use openzeppelin_token::erc721::interface::IERC721Metadata;
     use starknet::storage::*;
-    use super::{ContractAddress, IYourCollectible};
+    use super::{ContractAddress, IQuestlyNFTStandard};
 
     component!(path: ERC721Component, storage: erc721, event: ERC721Event);
     component!(path: SRC5Component, storage: src5, event: SRC5Event);
@@ -39,7 +39,6 @@ pub mod YourCollectible {
     // Use internal implementations but do not expose them
     impl ERC721InternalImpl = ERC721Component::InternalImpl<ContractState>;
     impl OwnableInternalImpl = OwnableComponent::InternalImpl<ContractState>;
-
 
     #[storage]
     pub struct Storage {
@@ -85,7 +84,7 @@ pub mod YourCollectible {
     }
 
     #[abi(embed_v0)]
-    pub impl YourCollectibleImpl of IYourCollectible<ContractState> {
+    pub impl QuestlyNFTStandardImpl of IQuestlyNFTStandard<ContractState> {
         fn mint_item(ref self: ContractState, recipient: ContractAddress, uri: ByteArray) -> u256 {
             self.token_id_counter.increment();
             let token_id = self.token_id_counter.current();

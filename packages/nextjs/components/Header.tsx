@@ -11,6 +11,9 @@ import {
   Bars3Icon,
   BugAntIcon,
   PhotoIcon,
+  SparklesIcon,
+  CubeIcon,
+  TagIcon,
 } from "@heroicons/react/24/outline";
 import { useOutsideClick } from "~~/hooks/scaffold-stark";
 import { CustomConnectButton } from "~~/components/scaffold-stark/CustomConnectButton";
@@ -28,6 +31,21 @@ type HeaderMenuLink = {
 };
 
 export const menuLinks: HeaderMenuLink[] = [
+  {
+    label: "Mint NFT",
+    href: "/mint",
+    icon: <SparklesIcon className="h-4 w-4" />,
+  },
+  {
+    label: "Mint Standard",
+    href: "/mint-standard",
+    icon: <CubeIcon className="h-4 w-4" />,
+  },
+  {
+    label: "Mint Minimal",
+    href: "/mint-minimal",
+    icon: <TagIcon className="h-4 w-4" />,
+  },
   {
     label: "My NFTs",
     href: "/myNFTs",

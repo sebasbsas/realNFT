@@ -10,8 +10,8 @@ export type ScaffoldConfig = {
 };
 
 const scaffoldConfig = {
-  targetNetworks: [chains.devnet],
-  // Only show the Burner Wallet when running on devnet
+  targetNetworks: [chains.mainnet], // Production: Mainnet only
+  // Disable Burner Wallet for production (mainnet)
   onlyLocalBurnerWallet: false,
   // The interval at which your front-end polls the RPC servers for new data
   // it has no effect if you only target the local network (default is 30_000)

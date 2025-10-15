@@ -2,18 +2,16 @@ use starknet::ContractAddress;
 
 #[starknet::interface]
 pub trait IYourCollectible<T> {
-    fn mint_item(ref self: T, recipient: ContractAddress, uri: ByteArray) -> u256;
+    fn mint_item(ref self: T, recipient: ContractAddress, uri_hash: felt252) -> u256;
+    fn token_uri_hash(self: @T, token_id: u256) -> felt252;
 }
 
 #[starknet::contract]
-pub mod YourCollectible {
+pub mod YourCollectibleOptimized {
     use contracts::components::counter::CounterComponent;
     use openzeppelin_access::ownable::OwnableComponent;
     use openzeppelin_introspection::src5::SRC5Component;
     use openzeppelin_token::erc721::ERC721Component;
-    use openzeppelin_token::erc721::extensions::ERC721EnumerableComponent;
-    use openzeppelin_token::erc721::extensions::ERC721EnumerableComponent::InternalTrait as EnumerableInternalTrait;
-    use openzeppelin_token::erc721::interface::IERC721Metadata;
     use starknet::storage::*;
     use super::{ContractAddress, IYourCollectible};
 
@@ -21,7 +19,6 @@ pub mod YourCollectible {
     component!(path: SRC5Component, storage: src5, event: SRC5Event);
     component!(path: OwnableComponent, storage: ownable, event: OwnableEvent);
     component!(path: CounterComponent, storage: token_id_counter, event: CounterEvent);
-    component!(path: ERC721EnumerableComponent, storage: enumerable, event: EnumerableEvent);
 
     // Expose entrypoints
     #[abi(embed_v0)]
@@ -32,14 +29,10 @@ pub mod YourCollectible {
     impl ERC721Impl = ERC721Component::ERC721Impl<ContractState>;
     #[abi(embed_v0)]
     impl SRC5Impl = SRC5Component::SRC5Impl<ContractState>;
-    #[abi(embed_v0)]
-    impl ERC721EnumerableImpl =
-        ERC721EnumerableComponent::ERC721EnumerableImpl<ContractState>;
 
     // Use internal implementations but do not expose them
     impl ERC721InternalImpl = ERC721Component::InternalImpl<ContractState>;
     impl OwnableInternalImpl = OwnableComponent::InternalImpl<ContractState>;
-
 
     #[storage]
     pub struct Storage {
@@ -51,11 +44,8 @@ pub mod YourCollectible {
         ownable: OwnableComponent::Storage,
         #[substorage(v0)]
         token_id_counter: CounterComponent::Storage,
-        #[substorage(v0)]
-        pub enumerable: ERC721EnumerableComponent::Storage,
-        // ERC721URIStorage variables
-        // Mapping for token URIs string format
-        token_uris: Map<u256, ByteArray>,
+        // Optimized: Store only IPFS hash as felt252 instead of full ByteArray
+        token_uri_hashes: Map<u256, felt252>,
     }
 
     #[event]
@@ -68,69 +58,37 @@ pub mod YourCollectible {
         #[flat]
         OwnableEvent: OwnableComponent::Event,
         CounterEvent: CounterComponent::Event,
-        EnumerableEvent: ERC721EnumerableComponent::Event,
     }
 
     #[constructor]
     fn constructor(ref self: ContractState, owner: ContractAddress) {
         let name: ByteArray = "Questly Platinums";
         let symbol: ByteArray = "QEST";
-        let base_uri: ByteArray = ""; // "https://ipfs.io/ipfs/";
+        let base_uri: ByteArray = ""; // Empty base_uri
 
-        // Initialize components in the correct order
+        // Initialize components
         self.ownable.initializer(owner);
         self.erc721.initializer(name, symbol, base_uri);
-        self.enumerable.initializer();
-        // SRC5 doesn't need initialization, just register interfaces if needed
     }
 
     #[abi(embed_v0)]
     pub impl YourCollectibleImpl of IYourCollectible<ContractState> {
-        fn mint_item(ref self: ContractState, recipient: ContractAddress, uri: ByteArray) -> u256 {
+        fn mint_item(ref self: ContractState, recipient: ContractAddress, uri_hash: felt252) -> u256 {
             self.token_id_counter.increment();
             let token_id = self.token_id_counter.current();
-            self.erc721.mint(recipient, token_id); // Todo: use `safe_mint instead of mint
-            self.set_token_uri(token_id, uri);
+            self.erc721.mint(recipient, token_id);
+            // Store only the hash (much smaller than full URI)
+            self.token_uri_hashes.write(token_id, uri_hash);
             token_id
         }
-    }
 
-    #[abi(embed_v0)]
-    pub impl WrappedIERC721MetadataImpl of IERC721Metadata<ContractState> {
-        // Override token_uri to use the internal ERC721URIStorage _token_uri function
-        fn token_uri(self: @ContractState, token_id: u256) -> ByteArray {
-            self._token_uri(token_id)
-        }
-        fn name(self: @ContractState) -> ByteArray {
-            self.erc721.name()
-        }
-        fn symbol(self: @ContractState) -> ByteArray {
-            self.erc721.symbol()
-        }
-    }
-
-    #[generate_trait]
-    impl InternalImpl of InternalTrait {
-        // token_uri custom implementation
-        fn _token_uri(self: @ContractState, token_id: u256) -> ByteArray {
+        fn token_uri_hash(self: @ContractState, token_id: u256) -> felt252 {
             assert(self.erc721.exists(token_id), ERC721Component::Errors::INVALID_TOKEN_ID);
-            let base_uri = self.erc721._base_uri();
-            if base_uri.len() == 0 {
-                Default::default()
-            } else {
-                let uri = self.token_uris.read(token_id);
-                format!("{}{}", base_uri, uri)
-            }
-        }
-        // ERC721URIStorage internal functions,
-        fn set_token_uri(ref self: ContractState, token_id: u256, uri: ByteArray) {
-            assert(self.erc721.exists(token_id), ERC721Component::Errors::INVALID_TOKEN_ID);
-            self.token_uris.write(token_id, uri);
+            self.token_uri_hashes.read(token_id)
         }
     }
 
-    // Implement this to add custom logic to the ERC721 hooks before mint/mint_item, transfer,
-    // transfer_from Similar to _beforeTokenTransfer in OpenZeppelin ERC721.sol
+    // Implement ERC721 hooks with empty implementation
     impl ERC721HooksImpl of ERC721Component::ERC721HooksTrait<ContractState> {
         fn before_update(
             ref self: ERC721Component::ComponentState<ContractState>,
@@ -138,8 +96,8 @@ pub mod YourCollectible {
             token_id: u256,
             auth: ContractAddress,
         ) {
-            let mut contract_state = self.get_contract_mut();
-            contract_state.enumerable.before_update(to, token_id);
+            // No additional logic needed
         }
     }
 }
+

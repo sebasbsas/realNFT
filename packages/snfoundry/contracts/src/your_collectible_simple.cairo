@@ -6,13 +6,11 @@ pub trait IYourCollectible<T> {
 }
 
 #[starknet::contract]
-pub mod YourCollectible {
+pub mod YourCollectibleSimple {
     use contracts::components::counter::CounterComponent;
     use openzeppelin_access::ownable::OwnableComponent;
     use openzeppelin_introspection::src5::SRC5Component;
     use openzeppelin_token::erc721::ERC721Component;
-    use openzeppelin_token::erc721::extensions::ERC721EnumerableComponent;
-    use openzeppelin_token::erc721::extensions::ERC721EnumerableComponent::InternalTrait as EnumerableInternalTrait;
     use openzeppelin_token::erc721::interface::IERC721Metadata;
     use starknet::storage::*;
     use super::{ContractAddress, IYourCollectible};
@@ -21,7 +19,6 @@ pub mod YourCollectible {
     component!(path: SRC5Component, storage: src5, event: SRC5Event);
     component!(path: OwnableComponent, storage: ownable, event: OwnableEvent);
     component!(path: CounterComponent, storage: token_id_counter, event: CounterEvent);
-    component!(path: ERC721EnumerableComponent, storage: enumerable, event: EnumerableEvent);
 
     // Expose entrypoints
     #[abi(embed_v0)]
@@ -32,9 +29,6 @@ pub mod YourCollectible {
     impl ERC721Impl = ERC721Component::ERC721Impl<ContractState>;
     #[abi(embed_v0)]
     impl SRC5Impl = SRC5Component::SRC5Impl<ContractState>;
-    #[abi(embed_v0)]
-    impl ERC721EnumerableImpl =
-        ERC721EnumerableComponent::ERC721EnumerableImpl<ContractState>;
 
     // Use internal implementations but do not expose them
     impl ERC721InternalImpl = ERC721Component::InternalImpl<ContractState>;
@@ -51,8 +45,6 @@ pub mod YourCollectible {
         ownable: OwnableComponent::Storage,
         #[substorage(v0)]
         token_id_counter: CounterComponent::Storage,
-        #[substorage(v0)]
-        pub enumerable: ERC721EnumerableComponent::Storage,
         // ERC721URIStorage variables
         // Mapping for token URIs string format
         token_uris: Map<u256, ByteArray>,
@@ -68,19 +60,17 @@ pub mod YourCollectible {
         #[flat]
         OwnableEvent: OwnableComponent::Event,
         CounterEvent: CounterComponent::Event,
-        EnumerableEvent: ERC721EnumerableComponent::Event,
     }
 
     #[constructor]
     fn constructor(ref self: ContractState, owner: ContractAddress) {
         let name: ByteArray = "Questly Platinums";
         let symbol: ByteArray = "QEST";
-        let base_uri: ByteArray = ""; // "https://ipfs.io/ipfs/";
+        let base_uri: ByteArray = ""; // Empty base_uri
 
         // Initialize components in the correct order
         self.ownable.initializer(owner);
         self.erc721.initializer(name, symbol, base_uri);
-        self.enumerable.initializer();
         // SRC5 doesn't need initialization, just register interfaces if needed
     }
 
@@ -89,7 +79,7 @@ pub mod YourCollectible {
         fn mint_item(ref self: ContractState, recipient: ContractAddress, uri: ByteArray) -> u256 {
             self.token_id_counter.increment();
             let token_id = self.token_id_counter.current();
-            self.erc721.mint(recipient, token_id); // Todo: use `safe_mint instead of mint
+            self.erc721.mint(recipient, token_id);
             self.set_token_uri(token_id, uri);
             token_id
         }
@@ -129,8 +119,7 @@ pub mod YourCollectible {
         }
     }
 
-    // Implement this to add custom logic to the ERC721 hooks before mint/mint_item, transfer,
-    // transfer_from Similar to _beforeTokenTransfer in OpenZeppelin ERC721.sol
+    // Implement ERC721 hooks with empty implementation (no enumerable)
     impl ERC721HooksImpl of ERC721Component::ERC721HooksTrait<ContractState> {
         fn before_update(
             ref self: ERC721Component::ComponentState<ContractState>,
@@ -138,8 +127,8 @@ pub mod YourCollectible {
             token_id: u256,
             auth: ContractAddress,
         ) {
-            let mut contract_state = self.get_contract_mut();
-            contract_state.enumerable.before_update(to, token_id);
+            // No additional logic needed for simple version
         }
     }
 }
+

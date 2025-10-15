@@ -46,10 +46,9 @@ import { green } from "./helpers/colorize-log";
  */
 const deployScript = async (): Promise<void> => {
   await deployContract({
-    contract: "YourCollectible",
+    contract: "QuestlyNFTStandard",
     constructorArgs: {
-      owner:
-        "0x064b48806902a367c8598f4f95c305e8c1a1acba5f082d294a43793113115691",
+      owner: deployer.address,
     },
   });
 };
