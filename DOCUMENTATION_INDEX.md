@@ -2,7 +2,7 @@
 
 > Índice completo de toda la documentación del proyecto Scaffold-Stark 2
 
-**Última actualización:** Enero 2025  
+**Última actualización:** Octubre 2025  
 **Versión del proyecto:** Scaffold-Stark 2  
 **Estado:** ✅ 3 Frontends Funcionales + Configuración Unificada  
 **Configuración:** Todos los contratos en `deployedContracts.ts`  
@@ -925,12 +925,12 @@ Clarificación completa sobre qué contratos están realmente desplegados vs cu�
 ---
 
 **Creado por:** Claude (AI Assistant)  
-**Fecha:** Enero 2025  
+**Fecha:** Octubre 2025  
 **Versión:** 1.1  
 **Proyecto:** Scaffold-Stark 2 - realNFT  
 ---
 
-## 🔧 **NUEVOS DOCUMENTOS (Enero 2025):**
+## 🔧 **NUEVOS DOCUMENTOS (Octubre 2025):**
 
 ### **CONTRACTS_CONFIGURATION_UNIFIED.md**
 **Estado:** ✅ Nuevo  
@@ -984,5 +984,5 @@ yarn dev
 
 ---
 
-**Última actualización de este índice:** Enero 2025
+**Última actualización de este índice:** Octubre 2025
 

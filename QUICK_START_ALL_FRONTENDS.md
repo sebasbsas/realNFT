@@ -2,7 +2,7 @@
 
 > Guía rápida para usar los 3 frontends de NFT en Mainnet
 
-**Última actualización:** Enero 2025  
+**Última actualización:** Octubre 2025  
 **Estado:** ✅ Todos funcionales  
 **Configuración:** ✅ Unificada en `deployedContracts.ts`  
 

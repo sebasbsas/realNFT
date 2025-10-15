@@ -2,7 +2,7 @@
 
 > Índice completo de toda la documentación del proyecto Scaffold-Stark 2
 
-**Última actualización:** Enero 2025  
+**Última actualización:** Octubre 2025  
 **Versión del proyecto:** Scaffold-Stark 2  
 **Estado:** ✅ 3 Frontends Funcionales + Configuración Unificada  
 **Configuración:** Todos los contratos en `deployedContracts.ts`  
@@ -204,5 +204,5 @@ yarn dev
 
 ---
 
-**Última actualización:** Enero 2025  
+**Última actualización:** Octubre 2025  
 **Estado:** ✅ Completamente actualizado y funcional
