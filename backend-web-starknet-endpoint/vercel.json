@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/mint.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/mint",
+      "dest": "/api/mint.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
+
